@@ -17,15 +17,19 @@ public class HomeWork {
       
         if (time >= 240)
         {
+        	
+        	
             sum = 2500;
             uptime = time - 240;
-        } else {
+          } else {
             sum = 3000;
             uptime = time - 30;
-        }
+            
+         }
 
         
         if (uptime < 0) {
+        	
             uptime = 0;
         }
 
