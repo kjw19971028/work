@@ -1,66 +1,72 @@
 package study20260108;
+
 import java.util.Scanner;
 
 public class Homework {
 
-	public static void main(String[] args) {
-	
-		{
+    public static void main(String[] args) {
 
-		        Scanner kbd = new Scanner(System.in);
+        int[] seats = {
+            1,0,0,0,0,0,0,0,1,1,
+            1,0,1,0,0,1,0,0,1,1,
+            0,1,1,0,0,0,0,1,0,0,
+            0,0,0,0,0,1,0,0,0,0,
+            0,1,1,1,0,0,0,0,0,0
+        };
 
-		        int[] seat = new int[50]; 
+        Scanner sc = new Scanner(System.in);
 
-		        
-		        System.out.print("예약 인원 수 : ");
-		        int people = kbd.nextInt();
+        while (true) {
 
-		        int start = -1;  //.시작위치 여기로 하기
-		        int count = 0;      //연속된 빈좌석수 체크하기
+            
+            System.out.println("좌석 상태입니다");
+            for (int i = 0; i < seats.length; i++) {
+                System.out.print(seats[i] + " ");
+                if ((i + 1) % 10 == 0) System.out.println();
+            }
 
-		        //for 하나씩 검사
-		        for (int i = 0; i < seat.length; i++) {
+            System.out.print("\n예약 인원 수 입력: ");
+            int people = sc.nextInt();
 
-		            if (seat[i] == 0) {  //빈 좌석일때
-		                count++;
+            if (people > 0 && people <= 50) {
 
-		                if (count == people) {
-		                    start = i - people + 1;
-		                    break;
-		                }
+                int start = -1;
 
-		            } else {   
-		                count = 0;
-		            }
-		        }
+                for (int i = 0; i <= seats.length - people; i++) {
 
-		        
-		        if (start != -1) {
+                    int c = 0;
 
-		           
-		            for (int i = start; i < start + people; i++) {
-		                seat[i] = 1;//연속좌석 1체크
-		            }
+                    for (int j = i; j < i + people; j++) {
+                        if (seats[j] == 0) {
+                            c++;
+                        }
+                    }
 
-		            System.out.println(
-		                   people + "석 예약 완료: (" +
-		                    (start + 1) + "번~ " +
-		                    (start + people) + "번)"
-		            );
+                    if (c == people) {
+                        start = i;
+                        break;
+                    }
+                }
 
-		        } else {
-		            System.out.println("연속 좌석이 없습니다");
-		        }
+                if (start == -1) {
+                    System.out.println("연속 좌석이 없습니다");
+                } else {
+                    for (int k = start; k < start + people; k++) {
+                        seats[k] = 1;
+                    }
 
-		        
-		        System.out.println("현재 좌석 상태는");
-		        for (int i = 0; i < seat.length; i++) {
-		            System.out.print(seat[i] + " ");
-		        }
-		    }
-		}
+                    System.out.println(
+                        people + "석 예약 완료 (" +
+                        (start + 1) + "번 ~ " +
+                        (start + people) + "번)"
+                    );
+                }
 
-	}
+            } else {
+                System.out.println("잘못된 인원 수입니다");
+            }
 
-
-
+            System.out.println();
+        }
+    }
+}
