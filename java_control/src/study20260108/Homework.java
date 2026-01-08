@@ -43,9 +43,9 @@ public class Homework {
 		            }
 
 		            System.out.println(
-		                   people + "석 예약 완료입니다/ " +
-		                    (start + 1) + "번부터 " +
-		                    (start + people) + "번"
+		                   people + "석 예약 완료: (" +
+		                    (start + 1) + "번~ " +
+		                    (start + people) + "번)"
 		            );
 
 		        } else {
